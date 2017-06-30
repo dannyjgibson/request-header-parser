@@ -9,7 +9,6 @@ const express = require('express'),
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
 // http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
@@ -18,7 +17,7 @@ app.get("/", function (request, response) {
     'language': getFirstWord(request.headers['accept-language']),
     'software': getSoftwareInfo(request.headers['user-agent'])
   };
-  response.send(parsedHeaderInfo);
+  response.type('json').status(200).send(parsedHeaderInfo);
 });
 
 let getFirstWord = words => {
